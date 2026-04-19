@@ -1,0 +1,69 @@
+.weather_menu {
+    width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    cursor: pointer;
+    --blue-gradient: linear-gradient(90deg, #007cf0, #00dfd8);
+    --light-gradient: linear-gradient(90deg, #79beff, #00dfd8);
+}
+
+.weather_menu .weather_menu_btn {
+    border: 2px solid rgb(54, 98, 179);
+    background: linear-gradient(180deg,rgb(94, 188, 255) 0%, rgb(66, 109, 197) 50%, rgba(43, 65, 173, 1) 100%);
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: transparent;
+    border: 0;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.weather_menu .weather_menu_content {
+    display: none; 
+    position: absolute;
+    height: 200px;
+    top: 110%; /* Небольшой отступ от кнопки */
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    border-radius: 12px;
+    overflow: hidden; /* Чтобы углы ссылок не вылезали */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 10;
+    overflow-y: scroll;
+}
+
+.weather_menu .weather_menu_content.active {
+    display: flex; 
+    flex-direction: column;
+}
+
+.weather_menu .weather_menu_content button {
+    margin: 5px;
+    background: var(--blue-gradient);
+    color: black;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.weather_menu .weather_menu_content button.active {
+    margin: 5px;
+    background: var(--light-gradient);
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
