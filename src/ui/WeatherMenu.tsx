@@ -3,11 +3,11 @@ import styles from "./WeatherMenu.module.css"
 import { useState } from "react"
 
 type WeatherMenuProps  = {
-    setCity: (city: string) => void,
-    city: string
+    setCities: React.Dispatch<React.SetStateAction<string[]>>,
+    cities: string[]
 }
 
-export function WeatherMenu({setCity, city}: WeatherMenuProps) {
+export function WeatherMenu({setCities, cities}: WeatherMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const weatherMenuClass = clsx({
@@ -18,19 +18,22 @@ export function WeatherMenu({setCity, city}: WeatherMenuProps) {
     const CITIES = ["Moscow", "New-York", "London", "Tokyo", "Ryazan"];
 
     const handleCity = (cityItem: string) => {
-        setCity(cityItem)
-        setIsOpen(false)
+        
+        if(!cities.includes(cityItem)) {
+            setCities(prev => [...prev, cityItem])
+            setIsOpen(false)
+        }
     }
 
     return (
         <div className={styles["weather_menu"]}>
             <button className={styles["weather_menu_btn"]} onClick={() => {setIsOpen(!isOpen)}}>
-                {`☰  ${city}`}
+                {`☰  ${cities[cities.length - 1]}`}
             </button>
             <nav className={weatherMenuClass}>
                 {CITIES.map((cityItem) => {
                     const weatherMenuButtonClass = clsx({
-                        [styles.active]: cityItem === city
+                        [styles.active]: cities.includes(cityItem)
                     })
 
                     return (

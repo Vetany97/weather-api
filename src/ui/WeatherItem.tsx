@@ -2,7 +2,8 @@ import { useWeatherItem } from "../bll/useWeatherItem";
 import styles from './WeatherItem.module.css';
 
 type WeatherItemProps = {
-    city: string
+    city: string,
+    deleteWeatherItem: (city: string) => void
 }
 
 const weatherIcons: Record<string, string> = {
@@ -24,18 +25,15 @@ const getWeatherIcon = (condition: string | null) => {
     return weatherIcons[condition.toLowerCase()] || "default.svg";
 }
 
-export function WeatherItem({city}: WeatherItemProps) {
-    const {weatherInfo} = useWeatherItem(city);
-
+export function WeatherItem({city, deleteWeatherItem}: WeatherItemProps) {
+    const weatherInfo = useWeatherItem(city);
     const imageWeather = getWeatherIcon(weatherInfo?.condition?.text);
 
     return (
         <>
-        {!weatherIcons && (<h1>Загрузка...</h1>)}
-
-        {weatherInfo && (<div className={styles["weather-item"]}>
+        {weatherInfo ? (<div className={styles["weather-item"]}>
             <div className={styles["weather_item_image"]}>
-                <div className={styles.close}>✖︎</div>
+                <div className={styles.close} onClick={() => {deleteWeatherItem(city)}}>✖︎</div>
                 <img src={`/icons/${imageWeather}`} alt={weatherInfo?.condition?.text}  />
             </div>
             
@@ -44,7 +42,7 @@ export function WeatherItem({city}: WeatherItemProps) {
                 <div className={styles["temperature"]}>{Math.round(weatherInfo.temp_c)}°</div>
                 <div>{city}</div>
             </div>
-        </div>)}
+        </div>) : (<h1>Загрузка...</h1>)}
         </>
     )
 }

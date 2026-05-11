@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react"
 import { getWeatherCurrentCity } from "../dal/api"
 
-export function useWeatherItem(city: string | null) {
-    const [weatherInfo, setWeatherInfo] = useState<string | null>(null)
+type WeatherInfo = {
+    condition: {text: string},
+    temp_c: number
+}
+
+export function useWeatherItem(city: string | null): WeatherInfo | null{
+    const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null)
     useEffect(() => {
+        if(!city) return 
+
         getWeatherCurrentCity(city)
         .then(json => {
-            setWeatherInfo(json.current)})
+            const data:WeatherInfo = json.current
+            setWeatherInfo(data)})
     }, [city])
     
-    return {weatherInfo}
+    return weatherInfo
 }
