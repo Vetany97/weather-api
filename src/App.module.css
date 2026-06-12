@@ -1,0 +1,30 @@
+
+:global(#root) {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Manrope Variable', sans-serif;
+}
+
+.carousel_container {
+  display: flex;
+  gap: 20px;                   /* Небольшой отступ между карточками */
+  overflow-x: scroll;
+  padding: 50px 0;
+  max-width: 500px; /* Зажимаем карусель в рамки */
+  margin: 0 auto;   
+  cursor: pointer;
+  /* Магия: левый отступ сдвигает первую карточку ровно на центр экрана */
+  padding-left: calc(50% - 150px); 
+  
+  /* Правый отступ нужен, чтобы последняя карточка тоже могла встать в центр */
+  padding-right: calc(50% - 150px); 
+  
+  scrollbar-width: none;       /* Прячем скроллбар */
+}
+
+.carousel_container::-webkit-scrollbar {
+  display: none;
+}
+

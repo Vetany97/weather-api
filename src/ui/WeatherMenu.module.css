@@ -67,3 +67,65 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
+
+.search_form {
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+/* Обертка для инпута и кнопки, чтобы они встали в ряд */
+.search_wrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Стильный современный инпут */
+.search_input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0; 
+  border-radius: 12px;
+  background: #f7f9fa; 
+  color: #2c3e50; 
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+/* Эффект при клике на инпут */
+.search_input:focus {
+  border-color: rgb(94, 188, 255);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 10px rgba(94, 188, 255, 0.2);
+}
+
+/* Красивый плейсхолдер */
+.search_input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Кнопка "Добавить" в тон общему стилю */
+.search_btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgb(94, 188, 255) 0%, rgb(66, 109, 197) 100%);
+  color: #ffffff;
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.search_btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.search_btn:active {
+  transform: translateY(1px);
+}
